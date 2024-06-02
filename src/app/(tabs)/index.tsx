@@ -1,8 +1,10 @@
 
 import EditScreenInfo from '@/src/components/EditScreenInfo';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { Text, View, Image, StyleSheet, FlatList } from 'react-native';
 import Colors from '@/src/constants/Colors';
 import petuniaImage from '@/assets/images/petunia.jpeg';
+import { ProductListItem } from '@/src/components/ProductListItem';
+import { Product } from '@/src/types';
 
 const products = [
   {
@@ -13,76 +15,51 @@ const products = [
   },
   {
     id: '2',
-    title: 'Petunia vaso 12cm',
+    title: 'Petunia vaso 15cm',
     price: '5,99 €',
     image: petuniaImage,
   },
   {
     id: '3',
-    title: 'Petunia vaso 12cm',
-    price: '4,99 €',
+    title: 'Petunia vaso 20cm',
+    price: '6,99 €',
     image: petuniaImage,
   },
   {
     id: '4',
-    title: 'Petunia vaso 12cm',
-    price: '4,99 €',
+    title: 'Petunia vaso 25cm',
+    price: '7,99 €',
     image: petuniaImage,
   },
   {
     id: '5',
-    title: 'Petunia vaso 12cm',
-    price: '4,99 €',
+    title: 'Petunia vaso 30cm',
+    price: '8,99 €',
     image: petuniaImage,
   },
   {
     id: '6',
-    title: 'Petunia vaso 12cm',
-    price: '4,99 €',
+    title: 'Petunia vaso 35cm',
+    price: '9,99 €',
     image: petuniaImage,
   },
 ];
 
-const product = products[0];
+
+
+
 
 export default function TabOneScreen() {
   return (
-    <View style={styles.container}>
-      <Image source={product.image} style={styles.image} /> 
-      <Text style={styles.title}>
-        {product.title}
-      </Text>
-      <Text style={
-        styles.price
-      
-      }>
-        {product.price}
-      </Text>
-    </View>
+     
+        <FlatList 
+        data={products}
+        renderItem={({ item }) => <ProductListItem product={item} />}
+        keyExtractor={(item) => item.id}
+        numColumns={2}
+        contentContainerStyle={{ gap : 10 , padding: 10}}
+        columnWrapperStyle={{ gap:10 }}
+        />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    
-    backgroundColor: 'white',
-    padding: 10,
-    borderRadius: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: '600',
-    marginVertical: 10,
-  },
-  image : {
-    width: '100%',
-    aspectRatio: 1,
-  },
-  price: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: Colors.light.tint,
-    
-  },
-
-});
